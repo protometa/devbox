@@ -1,1 +1,1 @@
-docker build -f Dockerfile-dev -t my-dev-env .
+docker build -t my-dev-env .

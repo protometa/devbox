@@ -1,13 +1,19 @@
-FROM alpine
+FROM ubuntu:14.04
 MAINTAINER Luke Nimtz <luke.nimtz@gmail.com>
 
-git config --global core.editor "vim"
+RUN apt-get install -y software-properties-common
+RUN sudo add-apt-repository ppa:neovim-ppa/unstable
+RUN apt-get update
+RUN apt-get install -y\
+  neovim\
+  git
 
-ADD .vimrc /root/.vimrc
+ADD .nvimrc /root/.config/nvim/init.vim
 ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
-  /root/.vim/autoload/
+  /root/.config/nvim/autoload/
 ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim\
-  /root/.vim/colors/
+  /root/.config/nvim/colors/
 
-RUN vim +PlugInstall +qall
+# RUN nvim -c "PlugInstall | qall"
 
+# ENTRYPOINT nvim
