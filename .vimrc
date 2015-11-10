@@ -12,8 +12,8 @@ set hidden
 
 " directories for vim temp files	
 " NOTE: $TMPDIR is OSX only, normally it's $TEMP
-set backupdir=$TMPDIR//
-set directory=$TMPDIR//
+set backupdir=/tmp/
+set directory=/tmp/
 
 " vim-plug
 call plug#begin()
