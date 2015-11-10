@@ -1,9 +1,7 @@
-FROM ubuntu:latest
+FROM alpine
 MAINTAINER Luke Nimtz <luke.nimtz@gmail.com>
 
-RUN apt-get update && apt-get install -y\
-  vim-nox\
-  git
+git config --global core.editor "vim"
 
 ADD .vimrc /root/.vimrc
 ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
@@ -13,8 +11,3 @@ ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/col
 
 RUN vim +PlugInstall +qall
 
-# cpy bins for dist
-RUN mkdir /root/bin/
-RUN cp /usr/bin/vim /root/bin/
-RUN cp /bin/sh /root/bin/
-RUN cp /usr/bin/stat /root/bin/
