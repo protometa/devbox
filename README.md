@@ -1,2 +1,2 @@
 
-Usage: `docker run -it -v ~/src:/root/src/ my-vim-docker`
+Example usage: `docker run -it -v ~/src:/root/src/ protometa my-dev-env vim`
