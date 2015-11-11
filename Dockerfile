@@ -12,3 +12,5 @@ ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/col
   /root/.vim/colors/
 
 RUN vim -T dumb +PlugInstall +qall
+
+WORKDIR /root/src/

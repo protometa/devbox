@@ -11,7 +11,6 @@ set noexpandtab
 set hidden
 
 " directories for vim temp files	
-" NOTE: $TMPDIR is OSX only, normally it's $TEMP
 set backupdir=/tmp/
 set directory=/tmp/
 

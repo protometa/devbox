@@ -1,4 +1,10 @@
 
 
-Usage: `docker run -it -v ~/src:/root/src/ devbox`
+# Usage
+
+    alias dev="docker run -it --rm \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v $(which docker):$(which docker) \
+      -v $(pwd):/root/src/ \
+      protometa/devbox"
 
