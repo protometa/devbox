@@ -56,6 +56,6 @@ set omnifunc=syntaxcomplete#Complete
 
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
-
+let g:ctrlp_show_hidden = 1
 
 
