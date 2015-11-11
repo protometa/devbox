@@ -5,8 +5,11 @@ RUN apt-get install -y software-properties-common
 RUN sudo add-apt-repository ppa:neovim-ppa/unstable
 RUN apt-get update
 RUN apt-get install -y\
+  python3-dev python3-pip\
   neovim\
   git
+
+RUN pip3 install neovim
 
 ADD .nvimrc /root/.config/nvim/init.vim
 ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
@@ -14,6 +17,6 @@ ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
 ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim\
   /root/.config/nvim/colors/
 
-# RUN nvim -c "PlugInstall | qall"
+RUN nvim +PlugInstall +qall --headless
 
 # ENTRYPOINT nvim
