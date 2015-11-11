@@ -18,5 +18,6 @@ ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/col
   /root/.config/nvim/colors/
 
 RUN nvim +PlugInstall +qall --headless
+ENV TERM=xterm-256colors
 
 # ENTRYPOINT nvim
