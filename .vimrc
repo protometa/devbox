@@ -1,6 +1,8 @@
 
 " show line numbers
 set number
+set nocompatible
+
 " set tab width to 4
 set tabstop=2
 set shiftwidth=2

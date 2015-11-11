@@ -13,4 +13,7 @@ ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/col
 
 RUN vim -T dumb +PlugInstall +qall
 
+RUN git config --global user.email "luke.nimtz@gmail.com"
+RUN git config --global user.name "Luke Nimtz"
+
 WORKDIR /root/src/
