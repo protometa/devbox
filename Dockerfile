@@ -26,12 +26,11 @@ ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/col
   /root/.config/nvim/colors/
 
 RUN nvim +PlugInstall +qall --headless
-ENV TERM=xterm-256colors
+ENV TERM=xterm-256color
+ENV EDITOR=nvim
 
 # git config
 RUN git config --global user.email "luke.nimtz@gmail.com"
 RUN git config --global user.name "Luke Nimtz"
 
 WORKDIR /root/src/
-
-# ENTRYPOINT nvim
