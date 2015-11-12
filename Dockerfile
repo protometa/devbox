@@ -32,5 +32,6 @@ ENV EDITOR=nvim
 # git config
 RUN git config --global user.email "luke.nimtz@gmail.com"
 RUN git config --global user.name "Luke Nimtz"
+RUN git config --global push.default simple
 
 WORKDIR /root/src/
