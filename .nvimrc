@@ -39,6 +39,9 @@ syntax enable
 set background=dark
 silent! colorscheme solarized
 
+" fade EOB tildes
+hi! EndOfBuffer ctermfg=black
+
 " special airline fonts
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
