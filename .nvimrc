@@ -30,7 +30,7 @@ Plug 'goatslacker/mango.vim'
 Plug 'altercation/vim-colors-solarized'
 " functionality handled below, don't know which is better
 " Plug 'gangleri/vim-diffsaved'
-Plug 'Shougo/neocomplete.vim'
+Plug 'shougo/deoplete.nvim'
 call plug#end()
 
 " solarized color settings
@@ -58,8 +58,8 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
-" enable neocomplete
-let g:neocomplete#enable_at_startup = 1
+" enable deoplete
+let g:deoplete#enable_at_startup = 1
 let g:ctrlp_show_hidden = 1
 
 

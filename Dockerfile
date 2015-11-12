@@ -25,7 +25,7 @@ ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
 ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim\
   /root/.config/nvim/colors/
 
-RUN nvim +PlugInstall +qall --headless
+RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 ENV TERM=xterm-256color
 ENV EDITOR=nvim
 
