@@ -12,9 +12,11 @@ RUN apt-get install -y software-properties-common
 RUN sudo add-apt-repository ppa:neovim-ppa/unstable
 RUN apt-get update
 RUN apt-get install -y\
+  wget curl\
+  git\
+  zsh\
   python3-dev python3-pip\
-  neovim\
-  git
+  neovim
 
 RUN pip3 install neovim
 
@@ -34,4 +36,11 @@ RUN git config --global user.email "luke.nimtz@gmail.com"
 RUN git config --global user.name "Luke Nimtz"
 RUN git config --global push.default simple
 
+# zsh config
+RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+ADD .zshrc /root/
+RUN chsh -s $(which zsh)
+
 WORKDIR /root/src/
+
+ENTRYPOINT /usr/bin/zsh
