@@ -48,6 +48,8 @@ let g:airline#extensions#tabline#enabled = 1
 
 " cursor wrapping
 set whichwrap+=<,>,h,l,[,]
+" allow cursor to sit on newlines in normal mode
+set virtualedit=onemore
 
 " diff unsaved changes
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
