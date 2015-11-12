@@ -1,24 +1,37 @@
 FROM ubuntu:14.04
 MAINTAINER Luke Nimtz <luke.nimtz@gmail.com>
 
+# set locale
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get update && apt-get install -y\
-  vim-nox\
+# install neovim and git
+RUN apt-get install -y software-properties-common
+RUN sudo add-apt-repository ppa:neovim-ppa/unstable
+RUN apt-get update
+RUN apt-get install -y\
+  python3-dev python3-pip\
+  neovim\
   git
 
-ADD .vimrc /root/.vimrc
+RUN pip3 install neovim
+
+# nvim config
+ADD .nvimrc /root/.config/nvim/init.vim
 ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\
-  /root/.vim/autoload/
+  /root/.config/nvim/autoload/
 ADD http://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim\
-  /root/.vim/colors/
+  /root/.config/nvim/colors/
 
-RUN vim -T dumb +PlugInstall +qall
+RUN nvim +PlugInstall +qall --headless
+ENV TERM=xterm-256colors
 
+# git config
 RUN git config --global user.email "luke.nimtz@gmail.com"
 RUN git config --global user.name "Luke Nimtz"
 
 WORKDIR /root/src/
+
+# ENTRYPOINT nvim
