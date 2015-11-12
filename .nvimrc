@@ -2,11 +2,11 @@
 " show line numbers
 set number
 
-" set tab width to 4
+" set tab width to 2
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set noexpandtab
+set expandtab
 
 " allow switching buffers without saving
 set hidden
