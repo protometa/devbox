@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Luke Nimtz <luke.nimtz@gmail.com>
 
-RUN useradd -m lukenimtz
+RUN useradd -m lukenimtz && echo "lukenimtz:docker" | chpasswd && adduser lukenimtz sudo && adduser lukenimtz users
 WORKDIR /home/lukenimtz/
 
 # set locale
@@ -15,7 +15,7 @@ RUN apt-get install -y software-properties-common
 RUN sudo add-apt-repository ppa:neovim-ppa/unstable
 RUN apt-get update
 RUN apt-get install -y\
-  wget curl\
+  sudo wget curl\
   git\
   zsh\
   python3-dev python3-pip\
