@@ -49,5 +49,5 @@ RUN git config --global push.default simple
 RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 
 WORKDIR /home/lukenimtz/src/
-ENTRYPOINT /usr/bin/zsh
+CMD zsh
 
