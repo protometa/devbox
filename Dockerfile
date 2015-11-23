@@ -38,6 +38,7 @@ RUN git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
 ADD .zshrc ./
 RUN chsh -s $(which zsh) lukenimtz
 
+RUN mkdir src/
 RUN chown -R lukenimtz:lukenimtz ./
 USER lukenimtz
 
@@ -47,6 +48,8 @@ RUN git config --global user.name "Luke Nimtz"
 RUN git config --global push.default simple
 
 RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
+
+VOLUME  /home/lukenimtz/src/
 
 WORKDIR /home/lukenimtz/src/
 CMD zsh
