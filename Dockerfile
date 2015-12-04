@@ -52,5 +52,5 @@ RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 VOLUME  /home/lukenimtz/src/
 
 WORKDIR /home/lukenimtz/src/
-CMD zsh
+ENTRYPOINT ["zsh"]
 
