@@ -1,11 +1,9 @@
 FROM ubuntu:14.04
 MAINTAINER Luke Nimtz <luke.nimtz@gmail.com>
 
-RUN useradd -m lukenimtz &&\
-  echo "lukenimtz:docker" | chpasswd &&\
-  adduser lukenimtz sudo &&\
-  adduser lukenimtz users
-  
+RUN yes | adduser lukenimtz --disabled-password \
+  && echo '%lukenimtz   ALL= NOPASSWD: ALL' >> /etc/sudoers
+
 WORKDIR /home/lukenimtz/
 
 # set locale
@@ -23,15 +21,21 @@ RUN echo "deb http://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/
 
 RUN apt-get update
 
-RUN apt-get install -y\
-  sudo wget curl\
-  git\
-  zsh\
-  python3-dev python3-pip\
-  neovim\
+RUN apt-get install -y \
+  sudo wget curl openssh-server \
+  git \
+  zsh \
+  python3-dev python3-pip \
+  neovim \
   docker-engine
 
 RUN adduser lukenimtz docker
+
+RUN mkdir -p /home/lukenimtz/.ssh/ \
+  && wget https://github.com/protometa.keys -O /home/lukenimtz/.ssh/authorized_keys \
+  && chmod 700 /home/lukenimtz/.ssh \
+  && chmod 600 /home/lukenimtz/.ssh/authorized_keys \
+  && mkdir /var/run/sshd
 
 RUN pip3 install neovim
 
@@ -52,6 +56,7 @@ RUN chsh -s $(which zsh) lukenimtz
 
 RUN mkdir src/
 RUN chown -R lukenimtz:lukenimtz ./
+
 USER lukenimtz
 
 # git config
@@ -64,5 +69,7 @@ RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 VOLUME  /home/lukenimtz/src/
 
 WORKDIR /home/lukenimtz/src/
-ENTRYPOINT ["zsh"]
 
+USER root
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
