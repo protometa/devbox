@@ -1,9 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER Luke Nimtz <luke.nimtz@gmail.com>
 
-RUN yes | adduser lukenimtz --disabled-password \
-  && echo '%lukenimtz   ALL= NOPASSWD: ALL' >> /etc/sudoers
-
 WORKDIR /home/lukenimtz/
 
 # set locale
@@ -19,9 +16,9 @@ RUN add-apt-repository ppa:neovim-ppa/unstable
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 RUN echo "deb http://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list
 
-
 RUN apt-get update && apt-get install -y \
-  sudo wget curl lftp \
+  sudo openssh-server \
+  wget curl lftp \
   git \
   zsh \
   python3-dev python3-pip \
@@ -29,7 +26,11 @@ RUN apt-get update && apt-get install -y \
   docker-engine \
 && rm -rf /var/lib/apt/lists/*
 
+RUN yes | adduser lukenimtz --disabled-password --shell /bin/zsh \
+  && echo '%lukenimtz   ALL= NOPASSWD: ALL' >> /etc/sudoers
 RUN adduser lukenimtz docker
+# alt home for mirroring host volumes on osx
+RUN ln -s /home /Users
 
 RUN mkdir -p /home/lukenimtz/.ssh/ \
   && wget https://github.com/protometa.keys -O /home/lukenimtz/.ssh/authorized_keys \
@@ -67,9 +68,6 @@ RUN git config --global push.default simple
 RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 
 VOLUME  /home/lukenimtz/code/
-
-WORKDIR /home/lukenimtz/
-CMD ["/bin/zsh"]
 
 USER root
 EXPOSE 22
