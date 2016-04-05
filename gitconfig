@@ -1,0 +1,15 @@
+[core]
+	excludesfile = ~/.gitignore
+[user]
+	name = Luke Nimtz
+	email = luke.nimtz@regence.com
+[push]
+	default = simple
+[alias]
+	co = checkout
+	br = branch
+	ci = commit -v
+	st = status -sb
+	unadd = reset HEAD --
+	lg = log --graph --decorate --format='%C(auto) %h %d %an %cr%n    %s%n'
+	lgf = !git lg --first-parent

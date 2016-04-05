@@ -52,7 +52,7 @@ ENV EDITOR=nvim
 
 # zsh config
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
-ADD .zshrc ./
+ADD zshrc ./.zshrc
 RUN chsh -s $(which zsh) lukenimtz
 
 RUN mkdir code/
@@ -61,9 +61,8 @@ RUN chown -R lukenimtz:lukenimtz /home/lukenimtz
 USER lukenimtz
 
 # git config
-RUN git config --global user.email "luke.nimtz@gmail.com"
-RUN git config --global user.name "Luke Nimtz"
-RUN git config --global push.default simple
+ADD gitconfig ./.gitconfig
+ADD gitignore ./.gitignore
 
 RUN nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 
