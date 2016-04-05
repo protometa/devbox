@@ -13,4 +13,4 @@
 	st = status -sb
 	unadd = reset HEAD --
 	lg = log --graph --decorate --format='%C(auto) %h %d %an %cr%n    %s%n'
-	ls = log --first-parent --no-merges --decorate --format='%C(auto) %h %d %an %cr%n    %s'
+	ls = log --first-parent --no-merges --format='%C(auto) %h %an %cr  %s  %d'
