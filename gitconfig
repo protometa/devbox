@@ -13,4 +13,4 @@
 	st = status -sb
 	unadd = reset HEAD --
 	lg = log --graph --decorate --format='%C(auto) %h %d %an %cr%n    %s%n'
-	lgf = !git lg --first-parent
+	ls = log --first-parent --no-merges --decorate --format='%C(auto) %h %d %an %cr%n    %s'
