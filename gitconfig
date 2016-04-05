@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	editor = nvim
 [user]
 	name = Luke Nimtz
 	email = luke.nimtz@regence.com
