@@ -35,11 +35,13 @@ call plug#end()
 
 " solarized color settings
 syntax enable
-set background=dark
-silent! colorscheme solarized
+" let g:solarized_termcolors=256
+" set t_Co=256
+" set background=dark
+" silent! colorscheme solarized
 
 " fade EOB tildes
-hi! EndOfBuffer ctermfg=black
+" hi! EndOfBuffer ctermfg=black
 
 " special airline fonts
 let g:airline_powerline_fonts = 1
