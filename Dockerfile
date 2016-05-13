@@ -7,7 +7,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get install -y software-properties-common
+# yes this is silly
+RUN apt-get update && apt-get install -y software-properties-common
 # neovim repo
 RUN add-apt-repository ppa:neovim-ppa/unstable
 # docker key and repo
