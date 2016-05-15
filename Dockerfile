@@ -41,6 +41,8 @@ RUN mkdir .ssh/ \
   && chmod 600 .ssh/authorized_keys \
   && mkdir /var/run/sshd
 
+COPY known_hosts .ssh/known_hosts
+
 RUN pip3 install neovim
 
 # nvim config
