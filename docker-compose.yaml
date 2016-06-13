@@ -1,0 +1,10 @@
+version: "2"
+services:
+  devbox:
+    build: .
+    environment:
+      - $DOCKER_CERT_PATH:/certs
+    ports:
+      - "2222:22"
+    volumes:
+      - $HOME/code/:/home/lukenimtz/code/
