@@ -1,5 +1,5 @@
 #!/bin/bash
 docker start devbox && \
-ssh -p 2222 \
+ssh -p 2222 -A \
   -o "SendEnv=DOCKER_HOST" \
-  -A $(docker-machine ip)
+  $(docker-machine ip)
