@@ -45,6 +45,10 @@ COPY known_hosts .ssh/known_hosts
 
 RUN pip3 install neovim
 
+RUN pip3 install docker-compose
+RUN curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
+  chmod +x /usr/local/bin/docker-machine
+
 # nvim config
 ADD nvimrc .config/nvim/init.vim
 ADD http://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
