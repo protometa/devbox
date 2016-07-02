@@ -1,0 +1,12 @@
+version: "2"
+services:
+  devbox:
+    build: .      
+    ports:
+      - "2222:22"
+    environment:
+      DOCKER_CERT_PATH: /certs
+      DOCKER_TLS_VERIFY: 1
+    volumes:
+      - $HOME/code/:/home/lukenimtz/code/
+      - $DOCKER_CERT_PATH:/certs
