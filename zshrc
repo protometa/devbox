@@ -89,7 +89,6 @@ export DOCKER_TLS_VERIFY=1
 
 # move to aliased host mirrored home
 export HOME=/Users/lukenimtz
-cd
 
 # better less paging
 export LESS="-F -X -R"
