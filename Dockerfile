@@ -25,8 +25,6 @@ RUN apt-get update && apt-get install -y \
   docker-engine \
 && rm -rf /var/lib/apt/lists/*
 
-ADD sshd_config /etc/ssh/sshd_config
-
 RUN yes | adduser lukenimtz --disabled-password --shell /bin/zsh \
   && echo '%lukenimtz   ALL= NOPASSWD: ALL' >> /etc/sudoers
 RUN adduser lukenimtz docker
@@ -38,8 +36,7 @@ WORKDIR /home/lukenimtz/
 RUN mkdir .ssh/ \
   && wget https://github.com/protometa.keys -O .ssh/authorized_keys \
   && chmod 700 .ssh \
-  && chmod 600 .ssh/authorized_keys \
-  && mkdir /var/run/sshd
+  && chmod 600 .ssh/authorized_keys
 
 COPY known_hosts .ssh/known_hosts
 
@@ -70,7 +67,8 @@ ADD gitignore .gitignore
 RUN mkdir code/
 RUN chown -R lukenimtz:lukenimtz /home/lukenimtz
 
-VOLUME /home/lukenimtz/code/
+VOLUME /home/lukenimtz
 
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+WORKDIR /Users/lukenimtz/
+USER lukenimtz
+ENTRYPOINT ["zsh"]

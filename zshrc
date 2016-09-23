@@ -83,12 +83,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# mounted docker certs
-export DOCKER_CERT_PATH=/certs
-export DOCKER_TLS_VERIFY=1
-
-# move to aliased host mirrored home
-export HOME=/Users/lukenimtz
-
 # better less paging
 export LESS="-F -X -R"

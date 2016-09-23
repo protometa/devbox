@@ -1,12 +1,14 @@
 version: "2"
 services:
   devbox:
-    build: .      
-    ports:
-      - "2222:22"
-    environment:
-      DOCKER_CERT_PATH: /certs
-      DOCKER_TLS_VERIFY: 1
+    build: .
     volumes:
       - $HOME/code/:/home/lukenimtz/code/
-      - $DOCKER_CERT_PATH:/certs
+      - ssh-agent:/var/run/ssh-agent
+    environment:
+      - SSH_AUTH_SOCK=/var/run/ssh-agent/auth/sock
+
+
+volumes:
+  ssh-agent:
+    external: true
