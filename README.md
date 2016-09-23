@@ -2,12 +2,24 @@
 
 # Usage
 
-Create container:
+Create a volume for the SSH agent:
 
-    docker create -it -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v ~/src/:/home/lukenimtz/src -v ~/.ssh:/home/lukenimtz/.ssh --name devbox1 protometa/devbox
+    docker volume create --name=ssh-agent 
 
-Attach to container:
+Run:
 
-    docker start devbox1 && docker attach devbox1
+    docker-compose run --rm devbox
 
+
+# SSH Agent
+
+This container uses an `ssh-agent` from another long-running container so that you don't have enter your key password every time you start this one. This enables the socket to be shared on Mac OS X.
+
+Start SSH agent:
+
+    docker run -u 1000 --rm -v ssh-agent:/ssh -v $HOME:$HOME -it whilp/ssh-agent ssh-add
+
+Add keys:
+
+    docker run -u 1000 --rm -v ssh-agent:/ssh -v $HOME:$HOME -it whilp/ssh-agent ssh-add $HOME/.ssh/id_rsa
 

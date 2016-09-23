@@ -3,12 +3,14 @@ services:
   devbox:
     build: .
     volumes:
-      - $HOME/code/:/home/lukenimtz/code/
+      - devbox-home:$HOME
+      - $HOME/.ssh:$HOME/.ssh
+      - $HOME/code:$HOME/code
       - ssh-agent:/var/run/ssh-agent
     environment:
       - SSH_AUTH_SOCK=/var/run/ssh-agent/auth/sock
 
-
 volumes:
+  devbox-home:
   ssh-agent:
     external: true
