@@ -6,6 +6,7 @@
 	email = luke.nimtz@gmail.com
 [push]
 	default = simple
+	followTags = true
 [alias]
 	co = checkout
 	br = branch
