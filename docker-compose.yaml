@@ -7,6 +7,7 @@ services:
       - $HOME/.ssh:$HOME/.ssh
       - $HOME/code:$HOME/code
       - ssh-agent:/var/run/ssh-agent
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - SSH_AUTH_SOCK=/var/run/ssh-agent/auth/sock
 
